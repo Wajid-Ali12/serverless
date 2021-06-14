@@ -16,6 +16,7 @@ const authUser = asyncHandler(async(req,res) => {
             email: user.email,
             token: generateToken(user._id),
         })
+        console.log(user)
     }
     else {
         res.status(401)

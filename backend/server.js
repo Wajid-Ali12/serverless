@@ -6,9 +6,7 @@ const userRoutes = require('./routes/userRoutes')
 const cors = require('cors')
 
 
-
 const app = express()
-
 app.use(cors())
 app.use(express.json())
 
@@ -19,6 +17,7 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 app.use('/api/users', userRoutes)
+console.log(userRoutes)
 
 app.use('*', (req, res) => {res.status(404).json({error: 'not found'})})
 
