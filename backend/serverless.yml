@@ -9,14 +9,14 @@ provider:
 
 functions: # add 4 functions for CRUD
   create:
-    handler: handler.create # point to exported create function in handler.js
+    handler: server.create # point to exported create function in handler.js
     events:
       - http:
           path: notes # path will be domain.name.com/dev/notes
           method: post
           cors: true
   getAll:
-    handler: handler.getAll # path will be domain.name.com/dev/notes
+    handler: handler.get # path will be domain.name.com/dev/notes
     events:
      - http:
          path: notes

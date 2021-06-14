@@ -1,13 +1,13 @@
-import asyncHandler from 'express-async-handler'
-import User from '../model/userModel.js';
-import generateToken from '../utils/generateToken.js';
+const asyncHandler =require('express-async-handler'); 
+const User = require('../model/userModel')
+const generateToken = require('../utils/generateToken')
 
 
 
 const authUser = asyncHandler(async(req,res) => {
     const {email,password} = req.body;
 
-    const user = await user.findOne({email})
+    const user = await User.findOne({email})
 
     if(user &&(user.matchPassword(password))){
         res.json({
@@ -27,7 +27,7 @@ const authUser = asyncHandler(async(req,res) => {
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
 
-    const userExists = await user.findOne({email})
+    const userExists = await User.findOne({email})
 
     if(userExists){
         res.status(400)
@@ -37,7 +37,9 @@ const registerUser = asyncHandler(async (req, res) => {
           name,
           email,
           password
-      }) 
+          
+      })
+      console.log(user)
       if (user) {
         res.status(201).json({
           _id: user._id,
@@ -90,4 +92,4 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.json(users)
   })
 
-export {authUser, registerUser, deleteUser, updateUser, getUsers}
+module.exports = {authUser, registerUser, deleteUser, updateUser, getUsers}
